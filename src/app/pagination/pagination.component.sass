@@ -5,7 +5,6 @@
     font-size: 0.9rem
     @media #{$tablet}
         display: flex
-        align-items: center
 
     &__total
         display: block
@@ -37,6 +36,7 @@
                 &.active
                     background: $theme
                     color: $grey
+                    pointer-events: none
                 &.disable
                     pointer-events: none
                     color: #ccc
@@ -48,3 +48,4 @@
                 border-left: solid 1px #ccc
     &__nav
         border: solid 1px #ccc
+        margin: 0 0 2em 0

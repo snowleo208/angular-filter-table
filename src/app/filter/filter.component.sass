@@ -4,7 +4,9 @@ $radius: 0.2em
 
 .c-filter
     display: flex
-    margin: 0 0 2em 0
+    margin: 0 0 1em 0
+    @media #{$phone}
+        margin: 0 0 2em 0
     .invalid
         border-color: #f66 !important
     &__form
@@ -18,6 +20,7 @@ $radius: 0.2em
         -webkit-appearance: none
         margin: 0 0.5em 0 0
         padding: 0.5em 1em
+        background-color: white
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="%23000" fill-rule="evenodd" d="M4.94974702 4.4852816L.70710632.2426409-.4e-7.9497477l4.94974747 4.94974745.70710678-.70710678-.70710678-.70710678-.70710678.70710677.70710678.70710678L9.8994945.9497477 9.1923877.2426409 4.94974703 4.4852816zm00l.70710678.70710677-.70710678.70710678-.70710678-.70710678.70710678-.70710678z"/></svg>')
         background-size: 10px 5px
         background-position: 95% center
@@ -29,6 +32,9 @@ $radius: 0.2em
         &:active, &:hover
             border: solid 1px $grey-dark
     &__text
+        appearance: none
+        -webkit-appearance: none
+        background: white
         border: solid 1px $grey
         border-radius: $radius
         margin: 0 0.5em 0 0
@@ -38,6 +44,7 @@ $radius: 0.2em
             border: solid 1px $grey-dark
     &__submit
         font-family: inherit
+        font-size: 1rem
         appearance: none
         -webkit-appearance: none
         border: 0
