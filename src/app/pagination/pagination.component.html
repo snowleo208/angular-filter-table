@@ -2,13 +2,16 @@
     <div class="c-pagination__total">
         <p>Page {{(currentIndex$|async)}} of {{(totalPages$|async)}}</p>
     </div>
-    <div class="c-pagination__list">
+    <nav class="c-pagination__list">
         <ul>
-            <li [ngClass]="currentIdx <= 1? 'disable' : ''" (click)="triggerPage(this.currentIdx - 1)">Back</li>
-            <li *ngFor="let n of this.pageArray" (click)="triggerPage(n)"
-                [ngClass]="currentIdx === n? 'active' : 'inactive'">{{n}}</li>
-            <li [ngClass]="currentIdx >= pageArray.length? 'disable' : ''" (click)="triggerPage(currentIdx + 1)">Next
+            <li>
+                <button [ngClass]="currentIdx <= 1? 'disable' : ''"
+                    (click)="triggerPage(this.currentIdx - 1)">Back</button></li>
+            <li><button *ngFor="let n of this.pageArray" (click)="triggerPage(n)"
+                    [ngClass]="currentIdx === n? 'active' : 'inactive'">{{n}}</button></li>
+            <li><button [ngClass]="currentIdx >= pageArray.length? 'disable' : ''"
+                    (click)="triggerPage(currentIdx + 1)">Next</button>
             </li>
         </ul>
-    </div>
+    </nav>
 </div>

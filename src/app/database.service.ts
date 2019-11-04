@@ -71,11 +71,11 @@ export class DatabaseService {
   }
 
   filterItem(search: Search) {
-    if (search.field === '' || search.keyword === '') {
+    if (search.field === '') {
       return;
     }
 
-    const newData = this.data.filter(item => item[search.field].indexOf(search.keyword) >= 0);
+    const newData = this.data.filter(item => item[search.field].toLowerCase().indexOf(search.keyword.toLowerCase()) >= 0);
 
     // recalculate page number and total pages
     this.setIndex(1, newData);

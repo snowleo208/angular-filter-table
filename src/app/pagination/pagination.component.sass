@@ -24,20 +24,26 @@
             margin: 0
             padding: 0
             border-radius: 0.2em
-            li
+            li:last-of-type
+                button
+                    border-right: 0
+            button
                 display: inline-block
+                appearance: none
+                -webkit-appearance: none
                 padding: 1em
+                border: 0
+                background: transparent
                 border-right: solid 1px #ccc
                 transition: ease 300ms
                 cursor: pointer
-                &:last-of-type
-                    border-right: 0
                 &.active
                     background: $theme
                     color: $grey
                 &.disable
                     pointer-events: none
                     color: #ccc
+                    outline: none
                 &:hover
                     background: $theme-light
                     color: #191919
