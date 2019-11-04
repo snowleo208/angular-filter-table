@@ -1,0 +1,16 @@
+<table class="c-table">
+    <thead>
+        <th>ID <button class="c-table__sort">Sort</button></th>
+        <th>Customer Name <button class="c-table__sort">Sort</button></th>
+        <th>Customer Email <button class="c-table__sort">Sort</button></th>
+        <th>Customer Phone <button class="c-table__sort">Sort</button></th>
+    </thead>
+    <tbody *ngIf="(data$|async) as customerLists">
+        <tr *ngFor="let customer of customerLists">
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.phone}}</td>
+        </tr>
+    </tbody>
+</table>
