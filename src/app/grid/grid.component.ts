@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Customer from '../customer';
 import { Observable, BehaviorSubject } from 'rxjs';
-import Types from './types';
 
 @Component({
   selector: 'app-grid',
@@ -11,6 +10,7 @@ import Types from './types';
 export class GridComponent implements OnInit {
   @Input() data$: Observable<Customer>;
   @Input() isAsc: boolean;
+  @Input() sortSetting$: BehaviorSubject<string>;
   @Output() sortType: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

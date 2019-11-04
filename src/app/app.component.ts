@@ -14,7 +14,6 @@ export class AppComponent implements OnInit, OnDestroy {
   @Input() sortType$: Observable<string> = new Observable();
 
   private lists$: Observable<Array<Customer | null>>;
-  private index$: Observable<number>;
   private sortSetting$: BehaviorSubject<string> = new BehaviorSubject('');
   private unsubscribeObs$: Subject<void>;
   private isAsc: boolean;
@@ -22,10 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private db: DatabaseService) {
     this.unsubscribeObs$ = new Subject();
     this.lists$ = this.db.getItemsObs();
-    this.index$ = this.db.getIndexObs();
     this.isAsc = true;
-
-    this.sortType$.subscribe(item => console.log(item));
 
     this.lists$
       .pipe(takeUntil(this.unsubscribeObs$))
@@ -47,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onSort(type: string) {
     // get output from grid component
-
+    // if field is the same, reverse the order, otherwise set to asc
     if (type === this.sortSetting$.getValue()) {
       this.isAsc = !this.isAsc;
     } else {
@@ -55,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     this.sortSetting$.next(type);
-    console.log(type, this.isAsc);
   }
 
   sortSwitch(type: string) {
@@ -63,6 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   sortBy(type: string, isAsc: boolean) {
+    // comparator function to sort by keys
     if (type === '') {
       return;
     }
@@ -75,5 +71,13 @@ export class AppComponent implements OnInit, OnDestroy {
       }
       return 0;
     };
+  }
+
+  setPage(num: number) {
+    // reset sort settings
+    this.isAsc = true;
+    this.sortSetting$.next('');
+
+    this.db.setIndex(num);
   }
 }

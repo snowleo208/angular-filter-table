@@ -1,1 +1,6 @@
-<app-grid [data$]="this.lists$" [isAsc]="this.isAsc" (sortType)="onSort($event)"></app-grid>
+<div class="c-app">
+    <app-grid [data$]="lists$" [isAsc]="isAsc" [sortSetting$]="sortSetting$" (sortType)="onSort($event)">
+    </app-grid>
+    <app-pagination [totalPages$]="db.getTotalPagesObs()" [currentIndex$]="db.getIndexObs()" (page)="setPage($event)">
+    </app-pagination>
+</div>

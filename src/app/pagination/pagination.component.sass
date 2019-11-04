@@ -1,0 +1,33 @@
+@import '../../styles.sass'
+
+.c-pagination
+    width: 100%
+    display: flex
+    align-items: center
+    font-size: 0.9rem
+    &__total
+        p
+            margin: 0
+    &__list
+        margin-left: auto
+        ul
+            display: flex
+            list-style: none
+            border: solid 1px #ccc
+            margin: 0
+            padding: 0
+            border-radius: 0.2em
+            li
+                display: inline-block
+                padding: 1em
+                border-right: solid 1px #ccc
+                transition: ease 300ms
+                cursor: pointer
+                &:last-of-type
+                    border-right: 0
+                &.active
+                    background: $theme
+                    color: $grey
+                &:hover
+                    background: $theme-light
+                    color: #191919

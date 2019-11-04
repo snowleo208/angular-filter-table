@@ -1,18 +1,4 @@
-// ----------------------------------
-// Var
-// ----------------------------------
-$phone: "only screen and (min-width : 576px)"
-$tablet: "only screen and (min-width : 768px)"
-$laptop: "only screen and (min-width : 992px)"
-$desktop: "only screen and (min-width : 1200px)"
-
-$theme: #2E5BFF
-$theme-light: #EEF2FF
-
-$grey: #F4F6FC
-$grey-dark: #8798AD
-
-$triangle-size: 0.3em
+@import '../../styles.sass'
 
 @mixin triangle
     content: ''
@@ -25,9 +11,9 @@ $triangle-size: 0.3em
     border-style: solid
 
 .c-table
-    width: 800px
-    max-width: 100%
+    width: 100%
     border-spacing: 0
+    margin: 0 0 1em 0
     &__title
         position: relative
         width: calc(100% / 4)
@@ -41,13 +27,13 @@ $triangle-size: 0.3em
         &::before
             @include triangle
             border-width: 0 $triangle-size $triangle-size $triangle-size
-            border-color: transparent transparent $grey transparent
+            border-color: transparent transparent #efefef transparent
         &::after
             @include triangle
             top: calc((50% - #{$triangle-size}) + #{$triangle-size} + 0.1em)
             right: 0.5em
             border-width: $triangle-size $triangle-size 0 $triangle-size
-            border-color: $grey transparent transparent transparent
+            border-color: #efefef transparent transparent transparent
 
     td
         padding: 0.5em
