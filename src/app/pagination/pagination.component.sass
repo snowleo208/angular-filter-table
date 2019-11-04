@@ -2,11 +2,18 @@
 
 .c-pagination
     width: 100%
-    display: flex
-    align-items: center
     font-size: 0.9rem
+    @media #{$tablet}
+        display: flex
+        align-items: center
+
     &__total
+        display: block
+        margin: 0 0 1em 0
         p
+            margin: 0
+        @media #{$tablet}
+            display: inline-block
             margin: 0
     &__list
         margin-left: auto
@@ -28,6 +35,9 @@
                 &.active
                     background: $theme
                     color: $grey
+                &.disable
+                    pointer-events: none
+                    color: #ccc
                 &:hover
                     background: $theme-light
                     color: #191919
