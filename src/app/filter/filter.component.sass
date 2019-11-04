@@ -8,7 +8,10 @@ $radius: 0.2em
     .invalid
         border-color: #f66 !important
     &__form
-        margin-left: auto
+        width: 100%
+        @media #{$phone}
+            margin-left: auto
+            width: auto
     &__select
         position: relative
         appearance: none
@@ -47,3 +50,15 @@ $radius: 0.2em
         &:hover
             background: $grey-dark
             color: $grey
+
+    &__select,
+    &__text,
+    &__submit
+        display: block
+        width: 100%
+        margin: 0 0 0.5em 0
+        @media #{$phone}
+            display: inline-block
+            width: auto
+            height: 100%
+            margin: 0 0.5em 0 0

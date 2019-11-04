@@ -5,11 +5,11 @@
     <nav class="c-pagination__list">
         <ul>
             <li>
-                <button [ngClass]="currentIdx <= 1? 'disable' : ''"
+                <button [ngClass]="currentIdx <= 1? 'c-pagination__nav disable' : 'c-pagination__nav'"
                     (click)="triggerPage(this.currentIdx - 1)">Back</button></li>
             <li><button *ngFor="let n of this.pageArray" (click)="triggerPage(n)"
                     [ngClass]="currentIdx === n? 'active' : 'inactive'">{{n}}</button></li>
-            <li><button [ngClass]="currentIdx >= pageArray.length? 'disable' : ''"
+            <li><button [ngClass]="currentIdx >= pageArray.length? 'c-pagination__nav disable' : 'c-pagination__nav'"
                     (click)="triggerPage(currentIdx + 1)">Next</button>
             </li>
         </ul>

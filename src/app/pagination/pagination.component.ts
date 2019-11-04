@@ -50,6 +50,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
     }
 
     this.page.emit(n);
+
+    window.scroll(0, 0);
   }
 
 }

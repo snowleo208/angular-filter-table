@@ -10,16 +10,39 @@
     height: 0
     border-style: solid
 
+.c-wrapper
+    position: relative
+    &::after
+        content: ''
+        position: absolute
+        top: 0
+        right: 0
+        display: block
+        width: 1.2em
+        height: 95% // for showing the scroll bar
+        background: linear-gradient(to right,rgba(255,255,255,0),#fff)
+        @media #{$tablet}
+            display: none
+    &__container
+        position: relative
+        width: 100%
+        max-width: 100%
+        overflow-x: auto
+        margin: 0 0 1em 0
+
 .c-table
     width: 100%
     border-spacing: 0
-    margin: 0 0 1em 0
     &__title
         position: relative
         width: calc(100% / 4)
+        min-width: calc(700px / 4)
+        font-size: 0.9rem
         padding: 0.5em 1em
         border-bottom: solid 1px $grey-dark
         cursor: pointer
+        @media #{$tablet}
+            font-size: 1rem
         .asc &:not([class*="inactive"])::before
             border-color: transparent transparent $grey-dark transparent
         .desc &:not([class*="inactive"])::after
@@ -27,13 +50,13 @@
         &::before
             @include triangle
             border-width: 0 $triangle-size $triangle-size $triangle-size
-            border-color: transparent transparent #efefef transparent
+            border-color: transparent transparent #ccc transparent
         &::after
             @include triangle
             top: calc((50% - #{$triangle-size}) + #{$triangle-size} + 0.1em)
             right: 0.5em
             border-width: $triangle-size $triangle-size 0 $triangle-size
-            border-color: #efefef transparent transparent transparent
+            border-color: #ccc transparent transparent transparent
 
     td
         padding: 0.5em

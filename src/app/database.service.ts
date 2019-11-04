@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Customer from './customer';
-import { take } from 'rxjs/operators';
-import { ReplaySubject, Observable } from 'rxjs';
+import { take, catchError } from 'rxjs/operators';
+import { ReplaySubject, Observable, of } from 'rxjs';
 import Search from './filter/search';
 
 @Injectable({
@@ -36,11 +36,15 @@ export class DatabaseService {
 
   fetchData(): void {
     // get data from server
-    const db$ = this.http.get('http://www.json-generator.com/api/json/get/cpNVzXeBRu');
+    const db$ = this.http.get('//www.json-generator.com/api/json/get/cpNVzXeBRu');
 
     // set data to service and take once only for default
     db$
       .pipe(take(1))
+      .pipe(catchError(error => {
+        console.log(`Bad request: ${error.message}`);
+        return of([]);
+      }))
       .subscribe((list: Customer[]) => {
         this.data = list;
         this.database$.next(list);

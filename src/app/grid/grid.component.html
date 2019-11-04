@@ -1,29 +1,43 @@
-<table [ngClass]="isAsc? 'c-table asc':'c-table desc'" *ngIf="(data$|async); else loading">
-    <thead>
-        <th [ngClass]="((sortSetting$|async) === 'id')?'c-table__title active':'c-table__title inactive'"
-            (click)="toggleSort('id')">ID</th>
-        <th [ngClass]="((sortSetting$|async) === 'name')?'c-table__title active':'c-table__title inactive'"
-            (click)="toggleSort('name')">Customer Name
-        </th>
-        <th [ngClass]="((sortSetting$|async) === 'email')?'c-table__title active':'c-table__title inactive'"
-            (click)="toggleSort('email')">Customer Email
-        </th>
-        <th [ngClass]="((sortSetting$|async) === 'phone')?'c-table__title active':'c-table__title inactive'"
-            (click)="toggleSort('phone')">Customer Phone
-        </th>
-    </thead>
-    <tbody *ngIf="(data$|async) as customerLists">
-        <tr *ngFor="let customer of customerLists">
-            <td>{{customer.id}}</td>
-            <td>{{customer.name}}</td>
-            <td>{{customer.email}}</td>
-            <td>{{customer.phone}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="c-wrapper">
+    <div class="c-wrapper__container">
+        <table [ngClass]="isAsc? 'c-table asc':'c-table desc'" *ngIf="(data$|async); else loading">
+            <thead>
+                <th role="button"
+                    [ngClass]="((sortSetting$|async) === 'id')?'c-table__title active':'c-table__title inactive'"
+                    (click)="toggleSort('id')">ID</th>
+                <th role="button"
+                    [ngClass]="((sortSetting$|async) === 'name')?'c-table__title active':'c-table__title inactive'"
+                    (click)="toggleSort('name')">Customer Name
+                </th>
+                <th role="button"
+                    [ngClass]="((sortSetting$|async) === 'email')?'c-table__title active':'c-table__title inactive'"
+                    (click)="toggleSort('email')">Customer Email
+                </th>
+                <th role="button"
+                    [ngClass]="((sortSetting$|async) === 'phone')?'c-table__title active':'c-table__title inactive'"
+                    (click)="toggleSort('phone')">Customer Phone
+                </th>
+            </thead>
+            <tbody *ngIf="(data$|async) as customerLists">
+                <tr *ngFor="let customer of customerLists">
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-<ng-template #loading>
-    <div class="u-loading">
-        Loading...
+        <ng-container *ngIf="(data$|async) as customerLists">
+            <p *ngIf="customerLists.length <= 0">
+                No results.
+            </p>
+        </ng-container>
     </div>
-</ng-template>
+
+    <ng-template #loading>
+        <div class="u-loading">
+            Loading...
+        </div>
+    </ng-template>
+</div>
