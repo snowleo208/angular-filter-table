@@ -1,1 +1,1 @@
-<app-grid [data$]="this.lists$"></app-grid>
+<app-grid [data$]="this.lists$" [isAsc]="this.isAsc" (sortType)="onSort($event)"></app-grid>

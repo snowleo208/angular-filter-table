@@ -12,19 +12,43 @@ $theme-light: #EEF2FF
 $grey: #F4F6FC
 $grey-dark: #8798AD
 
+$triangle-size: 0.3em
+
+@mixin triangle
+    content: ''
+    position: absolute
+    top: calc(50% - #{$triangle-size})
+    right: 0.5em
+    display: block
+    width: 0
+    height: 0
+    border-style: solid
+
 .c-table
-    &__sort
-        font-family: inherit
-        appearance: none
-        -webkit-appearance: none
-        background: $grey
-        color: $grey-dark
-        border: 0
-        border-radius: 0.2em
-        padding: 0.5em 1.5em
-        font-size: 1rem
+    width: 800px
+    max-width: 100%
+    border-spacing: 0
+    &__title
+        position: relative
+        width: calc(100% / 4)
+        padding: 0.5em 1em
+        border-bottom: solid 1px $grey-dark
         cursor: pointer
-        transition: ease 300ms
-        &:hover
-            background: $grey-dark
-            color: $grey
+        .asc &:not([class*="inactive"])::before
+            border-color: transparent transparent $grey-dark transparent
+        .desc &:not([class*="inactive"])::after
+            border-color: $grey-dark transparent transparent transparent
+        &::before
+            @include triangle
+            border-width: 0 $triangle-size $triangle-size $triangle-size
+            border-color: transparent transparent $grey transparent
+        &::after
+            @include triangle
+            top: calc((50% - #{$triangle-size}) + #{$triangle-size} + 0.1em)
+            right: 0.5em
+            border-width: $triangle-size $triangle-size 0 $triangle-size
+            border-color: $grey transparent transparent transparent
+
+    td
+        padding: 0.5em
+        border-bottom: solid 1px #ccc

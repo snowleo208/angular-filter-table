@@ -1,9 +1,16 @@
-<table class="c-table">
+<table [ngClass]="isAsc? 'c-table asc':'c-table desc'" *ngIf="(data$|async); else loading">
     <thead>
-        <th>ID <button class="c-table__sort">Sort</button></th>
-        <th>Customer Name <button class="c-table__sort">Sort</button></th>
-        <th>Customer Email <button class="c-table__sort">Sort</button></th>
-        <th>Customer Phone <button class="c-table__sort">Sort</button></th>
+        <th [ngClass]="((sortType|async) === 'id')?'c-table__title active':'c-table__title inactive'"
+            (click)="toggleSort('id')">ID</th>
+        <th [ngClass]="((sortType|async) === 'name')?'c-table__title active':'c-table__title inactive'"
+            (click)="toggleSort('name')">Customer Name
+        </th>
+        <th [ngClass]="((sortType|async) === 'email')?'c-table__title active':'c-table__title inactive'"
+            (click)="toggleSort('email')">Customer Email
+        </th>
+        <th [ngClass]="((sortType|async) === 'phone')?'c-table__title active':'c-table__title inactive'"
+            (click)="toggleSort('phone')">Customer Phone
+        </th>
     </thead>
     <tbody *ngIf="(data$|async) as customerLists">
         <tr *ngFor="let customer of customerLists">
@@ -14,3 +21,9 @@
         </tr>
     </tbody>
 </table>
+
+<ng-template #loading>
+    <div class="u-loading">
+        Loading...
+    </div>
+</ng-template>
