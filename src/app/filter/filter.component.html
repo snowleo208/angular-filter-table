@@ -1,0 +1,10 @@
+<div class="c-filter">
+    <form class="c-filter__form" #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
+        <select class="c-filter__select" name="field" id="field" ngModel required>
+            <option value="name">Name</option>
+            <option value="phone">Phone</option>
+        </select>
+        <input class="c-filter__text" type="text" name="keyword" id="keyword" ngModel required>
+        <button class="c-filter__submit">Search</button>
+    </form>
+</div>

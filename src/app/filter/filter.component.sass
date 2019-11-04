@@ -1,0 +1,47 @@
+@import '../../styles.sass'
+
+$radius: 0.2em
+
+.c-filter
+    display: flex
+    margin: 0 0 2em 0
+    &__form
+        margin-left: auto
+    &__select
+        position: relative
+        appearance: none
+        -webkit-appearance: none
+        margin: 0 0.5em 0 0
+        padding: 0.5em 1em
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="%23000" fill-rule="evenodd" d="M4.94974702 4.4852816L.70710632.2426409-.4e-7.9497477l4.94974747 4.94974745.70710678-.70710678-.70710678-.70710678-.70710678.70710677.70710678.70710678L9.8994945.9497477 9.1923877.2426409 4.94974703 4.4852816zm00l.70710678.70710677-.70710678.70710678-.70710678-.70710678.70710678-.70710678z"/></svg>')
+        background-size: 10px 5px
+        background-position: 95% center
+        background-repeat: no-repeat
+        border: solid 1px $grey
+        border-radius: $radius
+        font-size: 0.9rem
+        transition: ease 300ms
+        &:active, &:hover
+            border: solid 1px $grey-dark
+    &__text
+        border: solid 1px $grey
+        border-radius: $radius
+        margin: 0 0.5em 0 0
+        padding: 0.5em
+        transition: ease 300ms
+        &:active, &:hover
+            border: solid 1px $grey-dark
+    &__submit
+        font-family: inherit
+        appearance: none
+        -webkit-appearance: none
+        border: 0
+        background: $grey
+        color: $grey-dark
+        padding: 0.5em 1em
+        cursor: pointer
+        transition: ease 300ms
+        border-radius: $radius
+        &:hover
+            background: $grey-dark
+            color: $grey

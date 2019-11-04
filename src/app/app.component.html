@@ -1,4 +1,7 @@
 <div class="c-app">
+    <div class="c-app__filter">
+        <app-filter></app-filter>
+    </div>
     <app-grid [data$]="lists$" [isAsc]="isAsc" [sortSetting$]="sortSetting$" (sortType)="onSort($event)">
     </app-grid>
     <app-pagination [totalPages$]="db.getTotalPagesObs()" [currentIndex$]="db.getIndexObs()" (page)="setPage($event)">

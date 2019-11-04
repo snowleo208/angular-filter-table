@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import Customer from './customer';
 import { take } from 'rxjs/operators';
 import { ReplaySubject, Observable } from 'rxjs';
+import Search from './filter/search';
 
 @Injectable({
   providedIn: 'root'
@@ -50,14 +51,38 @@ export class DatabaseService {
       });
   }
 
-  setIndex(index: number): void {
+  setIndex(index: number, data?: Customer[]): void {
     // set page index
     this.currentIndex = index;
     this.currentIndex$.next(index);
-    const startIndex = (index - 1) * this.pageNum;
+
+    // update current page items
+    this.setCurrentPageItems(data ? data : this.data);
+  }
+
+  setCurrentPageItems(data: Customer[]) {
+    const startIndex = (this.currentIndex - 1) * this.pageNum;
+
+    // recalculate page number
+    this.totalPages$.next(Math.ceil(data.length / this.pageNum));
 
     // slice the full list to pageNum qty, starts from startIndex, e.g. 0 to 15, 15 to 30
-    this.currPageList$.next(this.data.slice(startIndex, startIndex + this.pageNum));
+    this.currPageList$.next(data.slice(startIndex, startIndex + this.pageNum));
+  }
+
+  filterItem(search: Search) {
+    if (search.field === '' || search.keyword === '') {
+      return;
+    }
+
+    const newData = this.data.filter(item => item[search.field].indexOf(search.keyword) >= 0);
+
+    // recalculate page number and total pages
+    this.setIndex(1, newData);
+  }
+
+  resetItem() {
+    this.setCurrentPageItems(this.data);
   }
 
   getFullListObs(): Observable<Array<Customer | null>> {

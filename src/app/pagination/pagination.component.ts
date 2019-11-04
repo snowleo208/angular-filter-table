@@ -23,7 +23,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribeObs$))
       .subscribe(num => {
         this.pageArray = Array.from({ length: num }, (v, n) => n + 1); // create array for page numbers
-        console.log(this.pageArray)
       });
 
     this.currentIndex$
@@ -38,7 +37,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
 
   triggerPage(n: number) {
     // make n to be within range of pages
-    console.log(n);
     if (!n) {
       return;
     }
