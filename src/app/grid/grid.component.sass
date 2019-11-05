@@ -38,7 +38,7 @@
         width: calc(100% / 4)
         min-width: calc(700px / 4)
         font-size: 0.9rem
-        padding: 0.5em 1em
+        padding: 0
         border-bottom: solid 1px $grey-dark
         cursor: pointer
         @media #{$tablet}
@@ -57,6 +57,27 @@
             right: 0.5em
             border-width: $triangle-size $triangle-size 0 $triangle-size
             border-color: #ccc transparent transparent transparent
+        button
+            appearance: none
+            -webkit-appearance: none
+            font-family: inherit
+            font-weight: bold
+            font-size: 1rem
+            width: 100%
+            height: 100%
+            background: white
+            border: 0
+            padding: 0.5em 1em
+            margin: 0
+            color: #191919
+            cursor: pointer
+            &::-moz-focus-inner
+                border: 0
+            &:hover
+                color: $grey-dark
+            &:focus
+                outline-color: rgba(19,19,19,0.4)
+                color: $grey-dark
 
     td
         padding: 0.5em

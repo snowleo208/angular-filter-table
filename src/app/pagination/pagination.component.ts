@@ -11,8 +11,8 @@ export class PaginationComponent implements OnInit, OnDestroy {
   @Input() totalPages$: Observable<number> = new Observable();
   @Input() currentIndex$: Observable<number> = new Observable();
   @Output() page: EventEmitter<any> = new EventEmitter();
-  private pageArray: Array<number> = [];
-  private currentIdx: number;
+  pageArray: Array<number> = [];
+  currentIdx: number;
   private unsubscribeObs$: Subject<void> = new Subject();
 
   constructor() {

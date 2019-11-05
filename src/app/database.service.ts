@@ -19,16 +19,16 @@ export class DatabaseService {
   private totalPages$: ReplaySubject<number>;
 
   constructor(private http: HttpClient) {
-    this.data = [];
-    this.database$ = new ReplaySubject();
-    this.currPageList$ = new ReplaySubject();
+    this.data = []; // pure full list from server
+    this.database$ = new ReplaySubject(); // full list obs
+    this.currPageList$ = new ReplaySubject(); // current page list, e.g. 15 items per page
 
     this.currentIndex = 1;
     this.currentIndex$ = new ReplaySubject();
 
     this.pageNum = 15;
-    this.pageNum$ = new ReplaySubject();
-    this.totalPages$ = new ReplaySubject();
+    this.pageNum$ = new ReplaySubject(); // obs of page number
+    this.totalPages$ = new ReplaySubject(); // total page number
 
     // fetch data from server
     this.fetchData();
@@ -79,7 +79,10 @@ export class DatabaseService {
       return;
     }
 
-    const newData = this.data.filter(item => item[search.field].toLowerCase().indexOf(search.keyword.toLowerCase()) >= 0);
+    // get filtered data
+    const newData = this.data.filter(item =>
+      item[search.field].toLowerCase()
+        .indexOf(search.keyword.toLowerCase()) >= 0);
 
     // recalculate page number and total pages
     this.setIndex(1, newData);

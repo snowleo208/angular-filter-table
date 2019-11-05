@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./grid.component.sass']
 })
 export class GridComponent implements OnInit {
-  @Input() data$: Observable<Customer>;
+  @Input() data$: Observable<Customer[]>;
   @Input() isAsc: boolean;
   @Input() sortSetting$: BehaviorSubject<string>;
   @Output() sortType: EventEmitter<any> = new EventEmitter();

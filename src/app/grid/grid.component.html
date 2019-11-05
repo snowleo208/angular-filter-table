@@ -2,20 +2,18 @@
     <div class="c-wrapper__container">
         <table [ngClass]="isAsc? 'c-table asc':'c-table desc'" *ngIf="(data$|async); else loading">
             <thead>
-                <th role="button"
-                    [ngClass]="((sortSetting$|async) === 'id')?'c-table__title active':'c-table__title inactive'"
-                    (click)="toggleSort('id')">ID</th>
-                <th role="button"
-                    [ngClass]="((sortSetting$|async) === 'name')?'c-table__title active':'c-table__title inactive'"
-                    (click)="toggleSort('name')">Customer Name
+                <th [ngClass]="((sortSetting$|async) === 'id')?'c-table__title active':'c-table__title inactive'">
+                    <button aria-label="Click to sort table by ID" (click)="toggleSort('id')">ID</button></th>
+                <th [ngClass]="((sortSetting$|async) === 'name')?'c-table__title active':'c-table__title inactive'">
+                    <button aria-label="Click to sort table by name" (click)="toggleSort('name')">Name</button>
                 </th>
-                <th role="button"
-                    [ngClass]="((sortSetting$|async) === 'email')?'c-table__title active':'c-table__title inactive'"
-                    (click)="toggleSort('email')">Customer Email
+                <th [ngClass]="((sortSetting$|async) === 'email')?'c-table__title active':'c-table__title inactive'">
+                    <button aria-label="Click to sort table by email " (click)="toggleSort('email')">
+                        Email</button>
                 </th>
-                <th role="button"
-                    [ngClass]="((sortSetting$|async) === 'phone')?'c-table__title active':'c-table__title inactive'"
-                    (click)="toggleSort('phone')">Customer Phone
+                <th [ngClass]="((sortSetting$|async) === 'phone')?'c-table__title active':'c-table__title inactive'">
+                    <button aria-label="Click to sort table by phone number" (click)="toggleSort('phone')">
+                        Phone</button>
                 </th>
             </thead>
             <tbody *ngIf="(data$|async) as customerLists">
